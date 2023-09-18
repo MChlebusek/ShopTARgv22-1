@@ -58,13 +58,23 @@ namespace Shop.Controllers
                 Crew = vm.Crew,
                 Company = vm.Company,
                 CargoWeight = vm.CargoWeight
-
             };
 
             var result = await _spaceshipServices.Create(dto);
 
 
             return RedirectToAction(nameof(Index), vm);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Details(Guid id)
+        {
+            var spaceship = await _spaceshipServices.GetAsync(id);
+
+            if (spaceship == null)
+            {
+                return NotFound();
+            }
         }
     }
 }
