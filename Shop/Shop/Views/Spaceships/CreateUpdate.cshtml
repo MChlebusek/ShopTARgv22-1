@@ -1,6 +1,15 @@
-﻿@model Shop.Models.Spaceship.SpaceshipsCreateViewModel
+﻿@model Shop.Models.Spaceship.SpaceshipCreateUpdateViewModel
 
-<h1>Create</h1>
+
+@if (Model.Id.HasValue)
+{
+    <h1>Update</h1>
+}
+else
+{
+    <h1>Create</h1>
+}
+
 
 <div>
     <form method="post" enctype="multipart/form-data">
@@ -55,7 +64,18 @@
             </div>
         </div>
 
-        <input asp-action="create" asp-controller="spaceships" type="submit" class="btn btn-primary" value="Create" />
+        <hr/>
+
+        @if (Model.Id.HasValue)
+        {
+            <input asp-action="update" asp-controller="spaceships" type="submit" class="btn btn-primary" value="Update" />
+        }
+        else
+        {
+            <input asp-action="create" asp-controller="spaceships" type="submit" class="btn btn-primary" value="Create" />
+        }
+
+        <a asp-action="index" class="btn btn-primary">Index</a>
 
     </form>
 </div>
