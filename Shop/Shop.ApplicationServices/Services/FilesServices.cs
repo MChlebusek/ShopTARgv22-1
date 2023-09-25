@@ -1,24 +1,24 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Shop.Core.Domain;
 using Shop.Core.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Shop.Core.ServiceInterface;
+using Shop.Data;
 
 namespace Shop.ApplicationServices.Services
 {
-    public class FilesServices
+    public class FilesServices : IFileServices
     {
         private readonly IHostEnvironment _webHost;
+        private readonly ShopContext _context;
 
         public FilesServices
             (
-                IHostEnvironment webHost
+                IHostEnvironment webHost,
+                ShopContext context
             )
         {
             _webHost = webHost;
+            _context = context;
         }
 
         public void FilesToApi(SpaceshipDto dto, Spaceship spaceship)
@@ -41,7 +41,14 @@ namespace Shop.ApplicationServices.Services
                     {
                         image.CopyTo(fileStream);
 
+                        FileToApi path = new FileToApi
+                        {
+                            Id = Guid.NewGuid(),
+                            ExistingFilePath = uniqueFileName,
+                            SpaceshipId = spaceship.Id,
+                        };
 
+                        _context.FileToApis.AddAsync(path);
                     }
                 }
             }
