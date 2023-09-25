@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic.FileIO;
 using Shop.ApplicationServices.Services;
 using Shop.Core.Dto;
@@ -60,11 +61,23 @@ namespace Shop.Controllers
                 EnginePower = vm.EnginePower,
                 Crew = vm.Crew,
                 Company = vm.Company,
-                CargoWeight = vm.CargoWeight
+                CargoWeight = vm.CargoWeight,
+                Files = vm.Files,
+                Image = vm.FileToApiViewModels
+                    .Select(x => new FileToApiDto
+                    {
+                        Id = x.Id,
+                        ExistingFilePath = x.FilePath,
+                        SpaceshipId = x.SpaceshipId,
+                    }).ToArray()
             };
 
             var result = await _spaceshipServices.Create(dto);
 
+            if (result == null)
+            {
+                return RedirectToAction(nameof(Index));
+            }
 
             return RedirectToAction(nameof(Index), vm);
         }
@@ -79,6 +92,14 @@ namespace Shop.Controllers
                 return NotFound();
             }
 
+            var images = await _context.FileToApis
+                .Where(x => x.SpaceshipId == id)
+                .Select(y => new FileToApiViewModel
+                {
+                    FilePath = y.ExistingFilePath,
+                    Id = y.Id
+                }).ToArrayAsync();
+
             var vm = new SpaceshipDetailsViewModel();
 
             vm.Id = spaceship.Id;
@@ -91,6 +112,7 @@ namespace Shop.Controllers
             vm.CargoWeight = spaceship.CargoWeight;
             vm.CreatedAt = spaceship.CreatedAt;
             vm.ModifiedAt = spaceship.ModifiedAt;
+            vm.FileToApiViewModels.AddRange(images);
 
             return View(vm);
         }
