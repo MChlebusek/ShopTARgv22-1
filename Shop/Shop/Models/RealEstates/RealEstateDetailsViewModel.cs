@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Shop.Models.Spaceship;
 
-namespace Shop.Core.Domain
+namespace Shop.Models.RealEstates
 {
-    public class RealEstate
+    public class RealEstateDetailsViewModel
     {
-        [Key]
         public Guid? Id { get; set; }
         public string Name { get; set; }
         public string Type { get; set; }
@@ -19,9 +13,11 @@ namespace Shop.Core.Domain
         public string Company { get; set; }
         public int CargoWeight { get; set; }
 
+        public List<FileToApiViewModel> FileToApiViewModels { get; set; }
+            = new List<FileToApiViewModel>();
+
         //only in database
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
-
     }
 }

@@ -1,5 +1,4 @@
-﻿@model Shop.Models.Spaceship.SpaceshipCreateUpdateViewModel
-
+﻿@model Shop.Models.RealEstates.RealEstateCreateUpdateViewModel
 
 @if (Model.Id.HasValue)
 {
@@ -13,7 +12,7 @@ else
 
 <div>
     <form method="post" enctype="multipart/form-data">
-        <input asp-for="Id" type="hidden"/>
+        <input asp-for="Id" type="hidden" />
         <input asp-for="CreatedAt" type="hidden" />
 
         <div class="form-group row">
@@ -80,15 +79,15 @@ else
             <partial name="_Images" model="images" />
         }
 
-        <hr/>
+        <hr />
 
         @if (Model.Id.HasValue)
         {
-            <input asp-action="update" asp-controller="realestates" type="submit" class="btn btn-primary" value="Update" />
+            <input asp-action="update" asp-controller="spaceships" type="submit" class="btn btn-primary" value="Update" />
         }
         else
         {
-            <input asp-action="create" asp-controller="realestates" type="submit" class="btn btn-primary" value="Create" />
+            <input asp-action="create" asp-controller="spaceships" type="submit" class="btn btn-primary" value="Create" />
         }
 
         <a asp-action="index" class="btn btn-primary">Index</a>
@@ -97,7 +96,7 @@ else
 </div>
 
 @section Scripts
-{
+    {
     <script>
         $(document).ready(function () {
             $('.custom-file-input').on("change", function () {
