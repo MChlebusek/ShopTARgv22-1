@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Shop.Models.RealEstates.RealEstateCreateUpdateViewModel>
+﻿@model IEnumerable<Shop.Models.RealEstates.RealEstateIndexViewModel>
 
 
 
@@ -27,18 +27,18 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var realEstate in Model)
+            @foreach (var RealEstate in Model)
             {
                 <tr>
                     <td>@rowNumber</td>
-                    <td>@realEstate.Name</td>
-                    <td>@realEstate.Type</td>
-                    <td>@realEstate.Passengers</td>
-                    <td>@realEstate.EnginePower</td>
+                    <td>@RealEstate.Name</td>
+                    <td>@RealEstate.Type</td>
+                    <td>@RealEstate.Passengers</td>
+                    <td>@RealEstate.EnginePower</td>
                     <td>
-                        <a asp-action="details" asp-controller="realestates" asp-route-id="@realEstate.Id" class="btn btn-info">Details</a>
-                        <a asp-action="update" asp-controller="realestates" asp-route-id="@realEstate.Id" class="btn btn-primary">Update</a>
-                        <a asp-action="delete" asp-controller="realestates" asp-route-id="@realEstate.Id" class="btn btn-outline-danger">Delete</a>
+                        <a asp-action="details" asp-controller="realestates" asp-route-id="@RealEstate.Id" class="btn btn-info">Details</a>
+                        <a asp-action="update" asp-controller="realestates" asp-route-id="@RealEstate.Id" class="btn btn-primary">Update</a>
+                        <a asp-action="delete" asp-controller="realestates" asp-route-id="@RealEstate.Id" class="btn btn-outline-danger">Delete</a>
                     </td>
                 </tr>
 

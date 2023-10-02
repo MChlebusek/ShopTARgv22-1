@@ -1,4 +1,4 @@
-﻿using Shop.Models.Spaceship;
+﻿using Shop.Models.RealEstates;
 
 namespace Shop.Models.RealEstates
 {
@@ -14,11 +14,10 @@ namespace Shop.Models.RealEstates
         public int CargoWeight { get; set; }
         public List<IFormFile> Files { get; set; }
 
-        public List<FileToApiViewModel> FileToApiViewModels { get; set; }
-            = new List<FileToApiViewModel>();
 
         //only in database
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
+        public IEnumerable<object> FileToApiViewModels { get; internal set; }
     }
 }

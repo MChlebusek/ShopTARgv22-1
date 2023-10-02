@@ -1,4 +1,4 @@
-﻿@model Shop.Models.RealEstates.RealEstateCreateUpdateViewModel
+﻿@model Shop.Models.RealEstates.RealEstateDetailsViewModel
 
 <h1>Details</h1>
 
@@ -56,10 +56,7 @@
             @Html.DisplayFor(model => Model.ModifiedAt)
         </div>
 
-        @foreach (var images in Model.FileToApiViewModels)
-        {
-            <partial name="_Images" model="images" />
-        }
+
     </dl>
     <hr />
     <a asp-action="index" class="btn btn-primary">Index</a>

@@ -64,13 +64,8 @@ namespace Shop.Controllers
                 Company = vm.Company,
                 CargoWeight = vm.CargoWeight,
                 Files = vm.Files,
-                Image = vm.FileToApiViewModels
-                    .Select(x => new FileToApiDto
-                    {
-                        Id = x.Id,
-                        ExistingFilePath = x.FilePath,
-                        SpaceshipId = x.SpaceshipId,
-                    }).ToArray()
+
+
             };
 
             var result = await _RealEstatesServices.Create(dto);
