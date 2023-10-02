@@ -102,5 +102,18 @@ namespace Shop.ApplicationServices.Services
 
             
         }
+        public void UploadFilesToDatabase(SpaceshipDto dto, Spaceship domain)
+        {
+            if (dto.Files != null && dto.Files.Count > 0)
+            {
+                foreach (var file in dto.Files)
+                {
+                    using (var target = new MemoryStream())
+                    {
+
+                    }
+                }
+            }
+        }
     }
 }
