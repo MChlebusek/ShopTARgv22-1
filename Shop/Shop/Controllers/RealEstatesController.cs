@@ -7,7 +7,7 @@ using Shop.Core.ServiceInterface;
 using Shop.Data;
 using Shop.Models;
 using Shop.Models.RealEstates;
-
+using System.Reflection;
 
 namespace Shop.Controllers
 {
@@ -64,7 +64,13 @@ namespace Shop.Controllers
                 Company = vm.Company,
                 CargoWeight = vm.CargoWeight,
                 Files = vm.Files,
-
+                Image = vm.Image.Select(x=> new FileToDatabaseDto
+                {
+                    Id = x.ImageId,
+                    ImageData = x.ImageData,
+                    ImageTitle = x.ImageTitle,
+                    RealEstateId = x.RealEstateId
+                }).ToArray()
 
             };
 
@@ -88,6 +94,16 @@ namespace Shop.Controllers
                 return NotFound();
             }
 
+            var photos = await _context.FileToDatabases
+                .Where(x => x.RealEstateId == id)
+                .Select(y => new ImageToDatabaseViewModel
+                {
+                    RealEstateId = y.RealEstateId,
+                    ImageId = y.Id,
+                    ImageData = y.ImageData,
+                    ImageTitle = y.ImageTitle,
+                    Image = string.Format("data:image/git;base64,{0}", Convert.ToBase64String(y.ImageData))
+                }).ToArrayAsync();
 
 
             var vm = new RealEstateDetailsViewModel();
@@ -102,6 +118,7 @@ namespace Shop.Controllers
             vm.CargoWeight = RealEstate.CargoWeight;
             vm.CreatedAt = RealEstate.CreatedAt;
             vm.ModifiedAt = RealEstate.ModifiedAt;
+            vm.Image.AddRange(photos);
 
 
             return View(vm);

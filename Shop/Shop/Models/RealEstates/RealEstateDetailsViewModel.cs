@@ -18,5 +18,7 @@ namespace Shop.Models.RealEstates
         //only in database
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
+
+        public List<ImageToDatabaseViewModel> Image { get; set; } = new List<ImageToDatabaseViewModel>();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Shop.Core.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,8 +24,7 @@ namespace Shop.Core.Dto
         public DateTime ModifiedAt { get; set; }
 
         public List<IFormFile> Files { get; set; }
+        public IEnumerable<FileToDatabaseDto> Image { get; set; } = new List<FileToDatabaseDto>();
 
-        public IEnumerable<FileToApiDto> Image { get; set; }
-            = new List<FileToApiDto>();
     }
 }
