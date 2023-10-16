@@ -16,7 +16,8 @@ builder.Services.AddDbContext<ShopContext>(options =>
 builder.Services.AddScoped<ISpaceshipServices, SpaceshipServices>();
 builder.Services.AddScoped<IFileServices, FilesServices>();
 builder.Services.AddScoped<IRealEstatesServices, RealEstatesServices>();
-
+//add dependence interface and service class
+builder.Services.AddScoped<IKindergartenServices, KinderGartenServices>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
