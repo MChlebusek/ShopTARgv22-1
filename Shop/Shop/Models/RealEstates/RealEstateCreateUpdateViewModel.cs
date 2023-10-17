@@ -19,7 +19,9 @@ namespace Shop.Models.RealEstates
         //only in database
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
+        public List<IFormFile> Files { get; set; }
         public List<ImageToDatabaseViewModel> Image { get; set; } = new List<ImageToDatabaseViewModel>();
-        public IEnumerable<object> FileToApiViewModels { get; internal set; }
+        
     }
+
 }
