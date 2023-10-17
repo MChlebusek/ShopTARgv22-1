@@ -25,10 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Mock\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Shop.ApplicationServices\Shop.ApplicationServices.csproj" />
     <ProjectReference Include="..\Shop.Core\Shop.Core.csproj" />
   </ItemGroup>
