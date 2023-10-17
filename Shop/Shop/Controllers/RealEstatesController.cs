@@ -24,7 +24,7 @@ namespace Shop.Controllers
             )
         {
             _context = context;
-            _RealEstatesServices = RealEstatesServices;
+            _RealEstatesServices = realEstatesServices;
             _fileServices = fileServices;
         }
 
