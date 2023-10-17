@@ -3,6 +3,7 @@ using Shop.Core.Domain;
 using Shop.Core.Dto;
 using Shop.Core.ServiceInterface;
 using Shop.Data;
+using Shop.Data.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,6 +73,10 @@ namespace Shop.ApplicationServices.Services
                 CreatedAt = dto.CreatedAt,
                 ModifiedAt = DateTime.Now,
             };
+            if (dto.Files != null)
+            {
+                _fileServices.UploadFilesToDatabase(dto, domain);
+            }
 
             _context.RealEstates.Update(domain);
             await _context.SaveChangesAsync();
